@@ -36,7 +36,8 @@
   "Face for custom inline tags in plain list items.")
 
 (font-lock-add-keywords 'org-mode
-  '(("#\\(\\w+\\)" 0 'org-inline-tags-face)))
+  '(("#\\(\\w+\\(-\\w+\\)*\\)" 0 'org-inline-tags-face)))
+
 
 ;;;###autoload
 (defun org-inline-tags-search (tag)
