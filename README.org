@@ -1,16 +1,12 @@
 * Org Inline Tags
 
 ** Introduction
-~org-inline-tags~ is an Emacs package that extends org-mode functionality
-by allowing users to add hashtag-style tags to plain list
-items (and plain text generally), making it easy to mark items for later review or action.
-Tags are fontified with a custom face to make them stand out visually, and are searchable via a custom command.
+~org-inline-tags~ is an Emacs package that extends org-mode functionality by allowing users to add hashtag-style tags to plain list items (and plain text generally), making it easy to mark items for later review or action. Tags are fontified with a custom face to make them stand out visually, and are searchable via a custom command.
 
 ** Features
-- Add hashtag-style tags to plain list items
+- Add hashtag-style tags to plain list items #likethis
 - Fontify tags with a custom face
-- Search for tagged items in the current buffer, project-wide, or using
- ~consult-git-grep~
+- Search for tagged items in the current buffer, project-wide, or using ~consult-git-grep~
 - Insert predefined tags with a single keystroke
 
 ** Plain lists
@@ -42,12 +38,10 @@ The org-inline-tags package enhances org-mode's default plain list behavior by a
 2. Add the following to your Emacs configuration:
 
 #+begin_example emacs-lisp
-(add-to-list 'load-path "/path/to/org-inline-tags")
-(require 'org-inline-tags)
+(add-to-list 'load-path "/path/to/org-inline-tags") (require 'org-inline-tags)
 #+end_example
 
-Replace ~/path/to/org-inline-tags~ with the actual path to the
-directory containing ~org-inline-tags.el~.
+Replace ~/path/to/org-inline-tags~ with the actual path to the directory containing ~org-inline-tags.el~.
 
 **** Manual installation
 
@@ -60,64 +54,37 @@ directory containing ~org-inline-tags.el~.
 #+end_src
 
 ** Usage
-To insert a tag at the end of a plain list item, place the cursor at the
-end of the item and call the ~org-inline-tags-insert~ function with
-~M-x org-inline-tags-insert~ or bind it to a key:
+To insert a tag at the end of a plain list item, place the cursor at the end of the item and call the ~org-inline-tags-insert~ function with ~M-x org-inline-tags-insert~ or bind it to a key:
 
 #+begin_example emacs-lisp
 (global-set-key (kbd "C-c t") 'org-inline-tags-insert)
 #+end_example
 
-When prompted, select a predefined tag by pressing the corresponding
-key:
+When prompted, select a predefined tag by pressing the corresponding key:
 
 #+begin_example
-makefiler: review
-b: book
-t: todo
-u: urgent
-p: tweet
-i: insight
-c: cook-ideas-over-time
+makefiler: review b: book t: todo u: urgent p: tweet i: insight c: cook-ideas-over-time
 #+end_example
 
 *** Searching for tagged items
-To search for items tagged with a specific tag in the current buffer,
-call the ~org-inline-tags-search-buffer~ function with
-~M-x org-inline-tags-search-buffer~ and enter the tag you're looking
-for.
+To search for items tagged with a specific tag in the current buffer, call the ~org-inline-tags-search-buffer~ function with ~M-x org-inline-tags-search-buffer~ and enter the tag you're looking for.
 
-To search for items tagged with a specific tag project-wide, call the
-~org-inline-tags-search-project-wide~ function with
-~M-x org-inline-tags-search-project-wide~ and enter the tag you're
-looking for. This function requires ~consult-git-grep~.
+To search for items tagged with a specific tag project-wide, call the ~org-inline-tags-search-project-wide~ function with ~M-x org-inline-tags-search-project-wide~ and enter the tag you're looking for. This function requires ~consult-git-grep~.
 
-The ~org-inline-tags-search-project-wide~ function in this package
-allows you to search for inline tags across your entire project. If you
-have the ~consult~ package installed, it will use ~consult-git-grep~ for
-this search. ~consult-git-grep~ provides a fast and convenient interface
-for searching Git repositories. If ~consult-git-grep~ is not available,
-the function will fall back to using the ~occur~ function, which will
-search for the tag in the current buffer. Please note that ~occur~ only
-searches the current buffer, so it's not a direct replacement for
-~consult-git-grep~. If you frequently need to search for tags
-project-wide, we recommend installing the ~consult~ package for the best
-experience."
+The ~org-inline-tags-search-project-wide~ function in this package allows you to search for inline tags across your entire project. If you have the ~consult~ package installed, it will use ~consult-git-grep~ for this search. ~consult-git-grep~ provides a fast and convenient interface for searching Git repositories. If ~consult-git-grep~ is not available, the function will fall back to using the ~occur~ function, which will search for the tag in the current buffer. Please note that ~occur~ only searches the current buffer, so it's not a direct replacement for ~consult-git-grep~. If you frequently need to search for tags project-wide, we recommend installing the ~consult~ package for the best experience."
 
 ** Customization
 
-To customize on your setup, you can modify the
-~org-inline-tags-face~ face to change the appearance of tags:
+To customize on your setup, you can modify the ~org-inline-tags-face~ face to change the appearance of tags:
 
 #+begin_example emacs-lisp
 (custom-set-faces
- '(org-inline-tags-face ((t (:foreground "your-color" :weight bold)))))
+'(org-inline-tags-face ((t (:foreground "your-color" :weight bold)))))
 #+end_example
 
 Replace ~"your-color"~ with the desired color for the tags.
 
-You can also customize the predefined tags by modifying the ~tag-alist~
-within the ~org-inline-tags-insert~ function.
+You can also customize the predefined tags by modifying the ~tag-alist~ within the ~org-inline-tags-insert~ function.
 
 If you prefer different keybindings, you can customize them in your Emacs configuration. For example, to bind `org-inline-tag-insert` to `C-c C-t`, add the following to your configuration:
 
@@ -126,7 +93,7 @@ If you prefer different keybindings, you can customize them in your Emacs config
 #+end_src
 
 ** Contributing
-Contributions are welcome! Please open an issue or submit a pull request on the [[https://github.com/yourusername/org-inline-tags][GitHub repository]].
+Contributions are welcome! I'm not a programmer and I truly have no idea what I'm doing. Please open an issue or submit a pull request on the [[https://github.com/yourusername/org-inline-tags][GitHub repository]].
 
 ** License
 This project is licensed under the GNU General Public License v3.0 or later. See the [[https://chatgpt-static.s3.amazonaws.com/chats/LICENSE][LICENSE]] file for details.
