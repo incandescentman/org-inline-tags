@@ -115,11 +115,7 @@ If you prefer different keybindings, you can customize them in your Emacs config
 #+end_src
 
 ** Contributing
-Contributions are welcome! I'm not a programmer and I truly have no idea what I'm doing. Please open an issue or submit a pull request on the [[https://github.com/yourusername/org-inline-tags][GitHub repository]].
-
-** Credits and Acknowledgements
-
-Inspired by [[https://github.com/example/project-x][project-x]].
+Contributions are welcome! I'm not a programmer and I truly have no idea what I'm doing. Please open an issue or submit a pull request on the [[https://github.com/incandescentman/org-inline-tags][GitHub repository]].
 
 ** License
 
