@@ -53,10 +53,13 @@
 (defun org-inline-tags-search-project-wide ()
   "Search for inline TAG project-wide using counsel-projectile-ag if available, otherwise use occur."
   (interactive)
-  (message "Enter tag to search for (Please include the # sign at the beginning): ")
   (if (fboundp 'counsel-projectile-ag)
-      (counsel-projectile-ag)
-    (occur)))
+      (progn
+        (counsel-projectile-ag)
+        (when (eq (ivy-state-caller ivy-last) 'counsel-projectile-ag)
+          (insert "#")))
+    (occur (read-string "Enter tag to search for (Please include the # sign at the beginning): #"))))
+
 
 ;;;###autoload
 (defun org-inline-tags-insert ()

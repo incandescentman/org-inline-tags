@@ -1,13 +1,33 @@
 * Org Inline Tags
 
+[[https://link-to-your-screenshot][file:screenshot.png]]
+
+** Quick Start
+1. Clone the repository or download the ~org-inline-tags.el~ file.
+2. Add the following to your Emacs configuration:
+
+#+BEGIN_SRC emacs-lisp
+(use-package org-inline-tags
+ :load-path "/path/to/org-inline-tags")
+#+END_SRC
+
+Replace ~"/path/to/org-inline-tags"~ with the actual path to the directory containing ~org-inline-tags.el~.
+
 ** Introduction
 ~org-inline-tags~ is an Emacs package that extends org-mode functionality by allowing users to add hashtag-style tags to plain list items (and plain text generally), making it easy to mark items for later review or action. Tags are fontified with a custom face to make them stand out visually, and are searchable via a custom command.
 
 ** Features
+
 - Add hashtag-style tags to plain list items #likethis
 - Fontify tags with a custom face
-- Search for tagged items in the current buffer, project-wide, or using ~consult-git-grep~
+- Search for tagged items in the current buffer or project-wide
 - Insert predefined tags with a single keystroke
+
+** Dependencies
+- Emacs 26.1 or higher
+- Org 9.1 or higher
+- [[https://github.com/ericdanan/counsel-projectile][counsel-projectile-ag]] (optional)
+- [[https://github.com/minad/consult][consult-git-grep]] (optional)
 
 ** Plain lists
 A plain list in Emacs org-mode is what you think of when you think of a bulleted list --- a simple, plain-text list. Each line begins with either a bullet or hyphen (an "unordered" i.e., bulleted list) or a number (an "ordered" i.e. numbered list).
@@ -32,6 +52,8 @@ The org-inline-tags package enhances org-mode's default plain list behavior by a
 - When I have an idea I want to act on later, I usually want to act on the idea itself, not the broader heading or category it's under. But by default, org-mode tags can be added only to headings, not to plain lists. I don't know about you, but when I'm trying to capture my ideas, I'm not typing them down in the form of org-mode headings.
 - I needed a way to flag ideas for later action without promoting a granular idea into a heading --- a way that would flag not the general heading the idea falls under, but the specific idea or thought itself.
 - Hence the need for inline tags in plain lists. The org-inline-tags package provides this functionality, allowing users to easily tag and find ideas for later review or action.
+
+
 
 ** Installation
 1. Clone the repository or download the ~org-inline-tags.el~ file.
@@ -95,5 +117,10 @@ If you prefer different keybindings, you can customize them in your Emacs config
 ** Contributing
 Contributions are welcome! I'm not a programmer and I truly have no idea what I'm doing. Please open an issue or submit a pull request on the [[https://github.com/yourusername/org-inline-tags][GitHub repository]].
 
+** Credits and Acknowledgements
+
+Inspired by [[https://github.com/example/project-x][project-x]].
+
 ** License
-This project is licensed under the GNU General Public License v3.0 or later. See the [[https://chatgpt-static.s3.amazonaws.com/chats/LICENSE][LICENSE]] file for details.
+
+This project is licensed under the GNU General Public License v3.0 or later. See the [[https://github.com/yourusername/org-inline-tags/blob/main/LICENSE][LICENSE]] file for details.
