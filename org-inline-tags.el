@@ -50,13 +50,13 @@
   (consult-line (concat "#" tag)))
 
 ;;;###autoload
-(defun org-inline-tags-search-project-wide (tag)
-  "Search for inline TAG project-wide using consult-git-grep if available, otherwise use occur."
-  (interactive "sEnter tag to search for: ")
-  (if (fboundp 'consult-git-grep)
-      (consult-git-grep (concat "\\#" tag))
-    (occur (concat "#" tag))))
-
+(defun org-inline-tags-search-project-wide ()
+  "Search for inline TAG project-wide using counsel-projectile-ag if available, otherwise use occur."
+  (interactive)
+  (message "Enter tag to search for (Please include the # sign at the beginning): ")
+  (if (fboundp 'counsel-projectile-ag)
+      (counsel-projectile-ag)
+    (occur)))
 
 ;;;###autoload
 (defun org-inline-tags-insert ()
