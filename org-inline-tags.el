@@ -51,9 +51,12 @@
 
 ;;;###autoload
 (defun org-inline-tags-search-project-wide (tag)
-  "Search for inline TAG project-wide using consult-git-grep."
+  "Search for inline TAG project-wide using consult-git-grep if available, otherwise use occur."
   (interactive "sEnter tag to search for: ")
-  (consult-git-grep (concat "\\#" tag)))
+  (if (fboundp 'consult-git-grep)
+      (consult-git-grep (concat "\\#" tag))
+    (occur (concat "#" tag))))
+
 
 ;;;###autoload
 (defun org-inline-tags-insert ()
