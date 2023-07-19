@@ -1,6 +1,6 @@
 ;;; org-inline-tags.el --- Insert and search for inline tags in org-mode -*- lexical-binding: t -*-
 
-;; Copyright (C) 2023 Your Name
+;; Copyright (C) 2023 Jay Dixit
 
 ;; Author: Jay Dixit <jaydixit.work@gmail.com>
 ;; URL: https://github.com/incandescentman/org-inline-tags
@@ -40,10 +40,12 @@
 
 ;;;###autoload
 (defun org-inline-tags-search (tag)
+  "Search for TAG in the current org file."
   (org-search-view nil (concat "#" tag)))
 
 ;;;###autoload
 (defun org-inline-tags-search-buffer (tag)
+  "Search for TAG in the current buffer."
   (consult-line (concat "#" tag)))
 
 ;;;###autoload
@@ -54,6 +56,7 @@
 
 ;;;###autoload
 (defun org-inline-tags-insert ()
+  "Prompt the user to choose a tag and insert it at the current cursor position."
   (interactive)
   (let* ((tag-alist '((?r . "review")
                       (?b . "book")
@@ -73,9 +76,8 @@ c: cook-ideas-over-time\n")))
     (setq selected-tag (cdr (assoc selected-key tag-alist)))
     (if selected-tag
         (insert (format " #%s" selected-tag))
-      (message "Invalid tag selection"))))
+      (error "Invalid tag selection"))))
 
 (provide 'org-inline-tags)
 
 ;;; org-inline-tags.el ends here
-
