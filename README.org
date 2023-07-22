@@ -1,6 +1,6 @@
 * Org Inline Tags
 
-[[https://link-to-your-screenshot][file:screenshot.png]]
+[[https://raw.githubusercontent.com/incandescentman/org-inline-tags/main/screenshot.png][file:screenshot.png]]
 
 ** Quick Start
 1. Clone the repository or download the ~org-inline-tags.el~ file.
