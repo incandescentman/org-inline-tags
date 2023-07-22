@@ -121,13 +121,17 @@ If you prefer different keybindings, you can customize them in your Emacs config
 Contributions are welcome! I'm not a programmer and I truly have no idea what I'm doing. Please open an issue or submit a pull request on the [[https://github.com/incandescentman/org-inline-tags][GitHub repository]].
 
 ** Features I Need Help Implementing
-- **Improved tag search via consult-ripgrep:** Tag search via consult-ripgrep kind of works... but as of now, the user has to manually go to the beginning of the line in the minibuffer and add a ~\~ before the ~#~.
-   + This is because ~consult-ripgrep~ automatically pre-fills the search query with a ~#~, which is interpreted not as a symbol. To require the search to match the ~#~ at the beginning of the tag, we need to add a add a ~\~ before the ~#~.
+
+*** Improved tag search via consult-ripgrep
+- Tag search via consult-ripgrep kind of works... but as of now, the user has to manually go to the beginning of the line in the minibuffer and add a ~\~ before the ~#~.
+   + This is because ~consult-ripgrep~ automatically pre-fills the search query with a ~#~, which is interpreted /not/ as a symbol. To require the search to match the ~#~ at the beginning of the tag, we need to add a ~\~ before the ~#~.
    + I tried to get the function to do this automatically --- or rather, I tried to get ChatGPT to do it --- but it couldn't figure out how. You can see the failed attempts [[https://chat.openai.com/share/1a302089-cdf0-464f-995b-6e53a1cd9e40][here]].
-- **Simplified tag search:** Ideally, the user could call ~org-inline-tags-search-project-wide~ and just enter a text string like "psychology" to initiate a project-wide tag search, without having to manually enter ~\#~ at the beginning of the query
-- **Automatic tag search:** Ideally, when the point is on an inline tag, the user could simply hit ~RETURN~ to automatically do a project-wide search of that tag. This almost works, but currently has two limitations: (1) as above, the user has to manually enter ~\#~ at the beginning of the query; and (2) instead of being pre-filled with the tag at point, the user has to enter the tag manually.
+- Ideally, the user could call ~org-inline-tags-search-project-wide~ and just enter a text string like "psychology" to initiate a project-wide tag search, without having to manually enter ~\#~ at the beginning of the query.
 
-
+*** Automatic tag search
+Ideally, when the point is on an inline tag, the user could simply hit ~RETURN~ to automatically perform a project-wide search for that tag. This almost works, but currently has two limitations:
+1. As mentioned above, the user has to manually enter ~\#~ at the beginning of the query.
+2. Instead of being pre-filled with the tag at point, the user has to enter the tag manually.
 
 ** License
 
