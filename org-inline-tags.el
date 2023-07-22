@@ -50,15 +50,28 @@
   (consult-line (concat "#" tag)))
 
 ;;;###autoload
-(defun org-inline-tags-search-project-wide ()
-  "Search for inline TAG project-wide using counsel-projectile-ag if available, otherwise use occur."
+(defun org-inline-tags-search-project-wide (&optional tag)
+  "Search for inline TAG project-wide using consult-ripgrep if available, otherwise use occur."
   (interactive)
-  (if (fboundp 'counsel-projectile-ag)
-      (progn
-        (counsel-projectile-ag)
-        (when (eq (ivy-state-caller ivy-last) 'counsel-projectile-ag)
-          (insert "#")))
-    (occur (read-string "Enter tag to search for (Please include the # sign at the beginning): #"))))
+  (if (fboundp 'consult-ripgrep)
+      (consult-ripgrep nil (concat "#" tag))
+    (occur (or tag (read-string "Enter tag to search for (Please include the # sign at the beginning): #")))))
+
+(defun org-inline-tags-return (&optional indent)
+  "Check if point is on an inline tag, and if so, search for that tag.
+Otherwise, call `org-return'."
+  (interactive)
+  (let ((tag (with-syntax-table (let ((st (make-syntax-table)))
+                                 (modify-syntax-entry ?# "_" st)
+                                 st)
+               (thing-at-point 'symbol))))
+    (if (and tag (string-prefix-p "#" tag))
+        (org-inline-tags-search-project-wide (substring tag 1)) ; remove the '#'
+      (org-return indent))))
+
+(define-key org-mode-map (kbd "<return>") 'org-inline-tags-return)
+
+(define-key key-minor-mode-map (kbd "<return>") 'org-inline-tags-return)
 
 
 ;;;###autoload

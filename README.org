@@ -46,11 +46,11 @@ The org-inline-tags package enhances org-mode's default plain list behavior by a
 ** Why would plain lists need tags?
 - I take notes in plain text, not in the form of org-mode headings
 - As I'm writing, I often hit upon an idea I want to act on later in some way.
-  + a task I want to remember to do later
-  + an idea I want to think more about
-  + an idea for a Tweet
+  + a task I want to remember to do later #task
+  + an idea I want to think more about #thinkonthis
+  + an idea for a Tweet #tweet
   + an idea I want to "cook" over time by coming back to it every day over a period of weeks and recording new thoughts each time
-  + a well-formed sentence I want to put in the book I'm writing
+  + a well-formed sentence I want to put in the book I'm writing #book
 - When I have an idea I want to act on later, I usually want to act on the idea itself, not the broader heading or category it's under. But by default, org-mode tags can be added only to headings, not to plain lists. I don't know about you, but when I'm trying to capture my ideas, I'm not typing them down in the form of org-mode headings.
 - I needed a way to flag ideas for later action without promoting a granular idea into a heading --- a way that would flag not the general heading the idea falls under, but the specific idea or thought itself.
 - Hence the need for inline tags in plain lists. The org-inline-tags package provides this functionality, allowing users to easily tag and find ideas for later review or action.
