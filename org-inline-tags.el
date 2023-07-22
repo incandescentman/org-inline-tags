@@ -49,27 +49,16 @@
   "Search for TAG in the current buffer."
   (consult-line (concat "\\" "#" tag)))
 
-(defun my-consult-ripgrep (&optional dir initial)
-  "Run `consult-ripgrep' in DIR with INITIAL input."
-  (interactive "P")
-  (let ((hook (lambda ()
-                (when (and initial (string-prefix-p "#" initial))
-                  (goto-char (point-min))
-                  (insert "\\")
-                  (goto-char (point-max))
-                  (remove-hook 'minibuffer-setup-hook hook)))))
-    (add-hook 'minibuffer-setup-hook hook)
-    (consult-ripgrep dir initial)))
-
 ;;;###autoload
-(defun org-inline-tags-search-project-wide (&optional tag)
-  "Search for inline TAG project-wide using `my-consult-ripgrep' if available, otherwise use occur."
+(defun org-inline-tags-search-project-wide ()
+  "Search for inline TAG project-wide using consult-ripgrep if available, otherwise use occur."
   (interactive)
-  (let ((tag (or tag (read-string "Enter tag to search for (without the # sign at the beginning): "))))
-    (if (fboundp 'my-consult-ripgrep)
-        (my-consult-ripgrep nil (concat "#" tag)) ; add a \ before the #
-      (occur (concat "#" tag)))))
-
+  (if (fboundp 'consult-ripgrep)
+      (progn
+        (message "Enter tag to search for (Please go to the beginning of the line and add a \\ before the # sign)")
+        (sit-for 2.5) ; pause for 1.5 seconds
+        (consult-ripgrep nil))
+    (occur (read-string "Enter tag to search for (Please go to the beginning of the line and add a \\ before the # sign): #"))))
 
 (defun org-inline-tags-return (&optional indent)
   "Check if point is on an inline tag, and if so, search for that tag.
@@ -80,7 +69,7 @@ Otherwise, call `org-return'."
                                  st)
                (thing-at-point 'symbol))))
     (if (and tag (string-prefix-p "#" tag))
-        (org-inline-tags-search-project-wide (substring tag 1)) ; remove the '#'
+        (org-inline-tags-search-project-wide)
       (org-return indent))))
 
 (define-key org-mode-map (kbd "<return>") 'org-inline-tags-return)
