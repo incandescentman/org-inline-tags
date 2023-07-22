@@ -42,20 +42,33 @@
 ;;;###autoload
 (defun org-inline-tags-search (tag)
   "Search for TAG in the current org file."
-  (org-search-view nil (concat "#" tag)))
+  (org-search-view nil (concat "\\" "#" tag)))
 
 ;;;###autoload
 (defun org-inline-tags-search-buffer (tag)
   "Search for TAG in the current buffer."
-  (consult-line (concat "#" tag)))
+  (consult-line (concat "\\" "#" tag)))
+
+(defun my-consult-ripgrep (&optional dir initial)
+  "Run `consult-ripgrep' in DIR with INITIAL input."
+  (interactive "P")
+  (let ((hook (lambda ()
+                (when (and initial (string-prefix-p "#" initial))
+                  (goto-char (point-min))
+                  (insert "\\")
+                  (goto-char (point-max))
+                  (remove-hook 'minibuffer-setup-hook hook)))))
+    (add-hook 'minibuffer-setup-hook hook)
+    (consult-ripgrep dir initial)))
 
 ;;;###autoload
 (defun org-inline-tags-search-project-wide (&optional tag)
-  "Search for inline TAG project-wide using consult-ripgrep if available, otherwise use occur."
+  "Search for inline TAG project-wide using `my-consult-ripgrep' if available, otherwise use occur."
   (interactive)
-  (if (fboundp 'consult-ripgrep)
-      (consult-ripgrep nil (concat "\\#" tag)) ; use two backslashes to escape the '#'
-    (occur (or tag (read-string "Enter tag to search for (Please include the # sign at the beginning): #")))))
+  (let ((tag (or tag (read-string "Enter tag to search for (without the # sign at the beginning): "))))
+    (if (fboundp 'my-consult-ripgrep)
+        (my-consult-ripgrep nil (concat "#" tag)) ; add a \ before the #
+      (occur (concat "#" tag)))))
 
 
 (defun org-inline-tags-return (&optional indent)
