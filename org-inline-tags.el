@@ -54,8 +54,9 @@
   "Search for inline TAG project-wide using consult-ripgrep if available, otherwise use occur."
   (interactive)
   (if (fboundp 'consult-ripgrep)
-      (consult-ripgrep nil (concat "#" tag))
+      (consult-ripgrep nil (concat "\\#" tag)) ; use two backslashes to escape the '#'
     (occur (or tag (read-string "Enter tag to search for (Please include the # sign at the beginning): #")))))
+
 
 (defun org-inline-tags-return (&optional indent)
   "Check if point is on an inline tag, and if so, search for that tag.
